@@ -53,4 +53,18 @@ corrgram(biovars, order=NULL, lower.panel=NULL,
 ##########################
 #PLAYGROUND
 
+# using VIF - following Harold's recommendations
+require(usdm)
 
+r <- brick(stk)
+vif(r) # calculates vif for the variables in r
+
+vifcor(r)
+vifstep(r)
+
+v1 <- vifcor(r, th=0.9) # identify collinear variables that should be excluded
+v1
+v2 <- vifstep(r, th=10) # identify collinear variables that should be excluded
+v2
+vifstep(r)
+vifcor(r)
